@@ -58,3 +58,4 @@ rsconnect/
 # User specific folders
 venv/
 renv/
+tools/
