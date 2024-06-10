@@ -96,13 +96,13 @@ North Sea, Germany.
 
 
 ```{r}
+#| label: calculations
+#| message: false
+#| echo: false
 
 hourly_df <- py$hourly_dataframe
 
-#head(hourly_df)
-
-
-# C, m/s, hPa, %
+save(hourly_df, file = "./data/last_update_weather.Rdata")
 
 # ====== Wind Turbine Specs ======
 
