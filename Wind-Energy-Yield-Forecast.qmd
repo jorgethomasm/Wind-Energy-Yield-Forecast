@@ -100,9 +100,10 @@ North Sea, Germany.
 #| message: false
 #| echo: false
 
-hourly_df <- py$hourly_dataframe
+#hourly_df <- py$hourly_dataframe
+#save(hourly_df, file = "./data/last_update_weather.Rdata")
 
-save(hourly_df, file = "./data/last_update_weather.Rdata")
+load("./data/last_update_weather.Rdata")
 
 # ====== Wind Turbine Specs ======
 
