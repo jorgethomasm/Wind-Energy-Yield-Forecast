@@ -1,30 +1,39 @@
 ---
 title: "Wind Power & Energy Yield Forecast"
-subtitle: Forecast Horizon - Seven (07) days ahead
+subtitle: Forecast Horizon Seven (07) days ahead
+author: "Jorge A. Thomas"
+date: "`r Sys.Date()`"
+format:    
+    html:
+      self-contained: true
+      code-fold: true
+      df-print: tibble
+      code-summary: "Show the code"
+      grid: 
+        margin-width: 350px
+execute: 
+  echo: fenced
+reference-location: margin # margin
+citation-location: document
+
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Location and Site Assessment
 
 ```{r}
-
+#| label: initialisation
+#| message: false
+#| echo: false
 
 source("init.R")
 
-
-```
-
-```{python}
-
-print("test")
-
-
 ```
 
 
-
 ```{python}
+#| label: request
+#| message: false
+#| echo: false
 
 # Initialise libraries
 
@@ -42,8 +51,8 @@ openmeteo = openmeteo_requests.Client(session = retry_session)
 # The order of variables in hourly or daily is important to assign them correctly below
 url = "https://api.open-meteo.com/v1/dwd-icon"
 params = {
-	"latitude": 52.52,
-	"longitude": 13.41,
+	"latitude": 53.88,
+	"longitude": 7.40,
 	"hourly": ["relative_humidity_2m", "surface_pressure", "wind_speed_120m", "temperature_120m"],
 	"wind_speed_unit": "ms",
 	"timeformat": "unixtime"
@@ -76,15 +85,76 @@ hourly_data["wind_speed_120m"] = hourly_wind_speed_120m
 hourly_data["temperature_120m"] = hourly_temperature_120m
 
 hourly_dataframe = pd.DataFrame(data = hourly_data)
-# print(hourly_dataframe)
 
 ```
+
+::: {#fig-intro layout-ncol="1"}
+![Source: Google Earth](./images/wt_location.png){width="80%"}
+
+North Sea, Germany.
+:::
+
 
 ```{r}
 
 hourly_df <- py$hourly_dataframe
 
-head(hourly_df)
+#head(hourly_df)
 
+
+# C, m/s, hPa, %
+
+# ====== Wind Turbine Specs ======
+
+# Manufacturer: Goldwin
+# Model: GW 165-6.0 6300 
+
+# Variable Speed - Variable pitch
+
+wt_rated_power <- 6000 #  [kW]
+wt_rated_wind_speed <- 11.4 # [m/s] at standard air density
+wt_area <- 21382 # squared metres
+wt_hub_height <- 100 # metres
+Cp <- 0.45 # Power Coefficient
+wt_rotor_diam <- 165 # metres
+
+wt_ws_cut_in <- 3 # m/s
+wt_ws_cut_out <- 24 # m/s
+
+# Speed Range During Power Production
+wt_min_speed <- 5.5  # [RPM]
+wt_max_speed <- 10.7  # [RPM] Nominal
+
+#' Tip speed of blade 
+#' Linear speed of blade tip for Tip-Speed Ratio (lambda) calc.
+wt_min_tip_speed <- 2*pi * (wt_min_speed/60) * (wt_rotor_diam/2) # [m/s]
+wt_max_tip_speed <- 2*pi * (wt_max_speed/60) * (wt_rotor_diam/2) # [m/s] Nominal
+
+# wt_max_tip_speed <- 92 # [m/s] # From Specs.
+
+# ====== Onshore Wind Park =======
+
+n_wind_turbines <- 1
+installed_capacity <- (n_wind_turbines * wt_rated_power) / 1000 # [MW]
+
+
+ # Lat =  53°52'44.10"N
+
+ # Lon =   7°24'28.35"E
 
 ```
+
+## Weather Variables Forecast
+
+- relative_humidity_2m [%]
+- surface_pressure [hPa]
+- wind_speed_120m [m]
+- temperature_120m [Celsius]
+
+
+
+::: {#fig-intro layout-ncol="1"}
+![Source: https://www.directindustry.com/prod/goldwind/](./images/Goldwind_GW165-60.jpg){width="80%"}
+
+Goldwin Wind Turbine - Model: GW 165-6.0 6300 
+:::
