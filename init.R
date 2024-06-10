@@ -1,5 +1,4 @@
 # ======================== Wind-Energy-Yield-Forecast =========================
-#  
 # June 2024
 # @jorgethomasm
 
@@ -13,3 +12,4 @@ library(ggplot2)
 library(plotly)
 library(patchwork)
 library(kableExtra)
+library(xts)

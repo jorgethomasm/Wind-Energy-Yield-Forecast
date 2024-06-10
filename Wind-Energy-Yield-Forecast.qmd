@@ -27,6 +27,11 @@ citation-location: document
 
 source("init.R")
 
+source("./tools/jthomfuncs.r")
+theme_set(jthomggtheme)
+
+source("./tools/jthomfuncs_wind.r")
+
 ```
 
 
@@ -100,11 +105,10 @@ North Sea, Germany.
 #| message: false
 #| echo: false
 
-hourly_df <- py$hourly_dataframe
+# hourly_df <- py$hourly_dataframe
+# save(hourly_df, file = "./data/last_update_weather.Rdata")
 
-save(hourly_df, file = "./data/last_update_weather.Rdata")
-
-# load("./data/last_update_weather.Rdata")
+load("./data/last_update_weather.Rdata")
 
 # ====== Wind Turbine Specs ======
 
@@ -145,9 +149,6 @@ installed_capacity <- (n_wind_turbines * wt_rated_power) / 1000 # [MW]
 
 
 # ====== Power & Energy Calculations =======
-source("./tools/jthomfuncs.r")
-theme_set(jthomggtheme)
-source("./tools/jthomfuncs_wind.r")
 
 # Add calculations:
 
@@ -161,25 +162,75 @@ hourly_df <-
                                         cut_out = wt_ws_cut_out,
                                         air_density = rho_h,
                                         wind_speed = wind_speed_120m)) 
+
+# To XTS
+
+hourly_xts <- xts::xts(hourly_df[, 6:ncol(hourly_df)], as.POSIXct(hourly_df$date))
+
+ends <- xts::endpoints(hourly_xts, "days")
+ends <- ends + 1
+ends[length(ends)] <- ends[length(ends)] - 1
+
+
+# wind <- 
+#     wind_hourly_xts |>
+#     as_tibble() |>
+#     mutate(datetime = time(wind_hourly_xts)) |>    
+#     relocate(datetime) |>
+#     slice(2:n())
+
 ```
 
-## Weather Variables
+### Weather Variables
 
 relative_humidity_2m \[%\]; surface_pressure \[hPa\]; wind_speed_120m \[m/s\]; temperature_120m \[°C\]
 
+## Forecasted Generated Power
 ```{r}
 #| label: plots
 #| echo: false
+#| fig-width: 11
+#| fig-height: 4
+#| column: page-right
+#| warning: false
 
 pl_power <- ggplot(hourly_df, aes(x=date, y=p_out)) +
-geom_line() + 
-labs(title="Forcasted Generated Power", y="[kW]", x="UTC",caption = "Forcast Horizon: 7 days")
+
+  geom_line(colour = "red") + geom_point(colour = "red") +
+  labs(y="[kW]", x="UTC", caption = "Forecast Horizon: 168 hours.")
 
 pl_power
 
-
 ```
 
+## Daily Forecasted Energy Forecasted Generated Power
+
+```{r}
+#| label: daily_energy
+#| echo: false
+
+
+daily_xts <-  xts::period.apply(hourly_xts, ends, sum)
+
+daily_df <- 
+    daily_xts |>
+    as_tibble() |>
+    mutate(datetime = time(daily_xts)) |>
+    mutate(MWh = V1/1000) |>
+    relocate(datetime) |>
+    slice(2:(n()-1)) 
+   
+
+# ggplot(daily_df, aes(x=datetime, y=MWh)) +
+#   geom_bar() + labs(y = "[MWh]")
+
+
+    
+
+
+
+
+```
 
 
 ::: {#fig-intro layout-ncol="1"}

@@ -4,20 +4,27 @@
     "href": "Wind-Energy-Yield-Forecast.html",
     "title": "Wind Power & Energy Yield Forecast",
     "section": "",
-    "text": "Coordinates 53.880001068115234°N 7.400000095367432°E\nElevation 0.0 m asl\nTimezone None None\nTimezone difference to GMT+0 0 s\n\n\n\n\n\n\n\n\n\nSource: Google Earth\n\n\n\n\nFigure 1: North Sea, Germany."
+    "text": "Coordinates 53.880001068115234°N 7.400000095367432°E\nElevation 0.0 m asl\nTimezone None None\nTimezone difference to GMT+0 0 s\n\n\n\n\n\n\n\n\n\nSource: Google Earth\n\n\n\n\nFigure 1: North Sea, Germany.\n\n\n\n\nrelative_humidity_2m [%]; surface_pressure [hPa]; wind_speed_120m [m/s]; temperature_120m [°C]"
   },
   {
     "objectID": "Wind-Energy-Yield-Forecast.html#location-and-site-assessment",
     "href": "Wind-Energy-Yield-Forecast.html#location-and-site-assessment",
     "title": "Wind Power & Energy Yield Forecast",
     "section": "",
-    "text": "Coordinates 53.880001068115234°N 7.400000095367432°E\nElevation 0.0 m asl\nTimezone None None\nTimezone difference to GMT+0 0 s\n\n\n\n\n\n\n\n\n\nSource: Google Earth\n\n\n\n\nFigure 1: North Sea, Germany."
+    "text": "Coordinates 53.880001068115234°N 7.400000095367432°E\nElevation 0.0 m asl\nTimezone None None\nTimezone difference to GMT+0 0 s\n\n\n\n\n\n\n\n\n\nSource: Google Earth\n\n\n\n\nFigure 1: North Sea, Germany.\n\n\n\n\nrelative_humidity_2m [%]; surface_pressure [hPa]; wind_speed_120m [m/s]; temperature_120m [°C]"
   },
   {
-    "objectID": "Wind-Energy-Yield-Forecast.html#weather-variables",
-    "href": "Wind-Energy-Yield-Forecast.html#weather-variables",
+    "objectID": "Wind-Energy-Yield-Forecast.html#forecasted-generated-power",
+    "href": "Wind-Energy-Yield-Forecast.html#forecasted-generated-power",
     "title": "Wind Power & Energy Yield Forecast",
-    "section": "Weather Variables",
-    "text": "Weather Variables\nrelative_humidity_2m [%]; surface_pressure [hPa]; wind_speed_120m [m/s]; temperature_120m [°C]\n\n\n\n\n\n\n\n\n\n\n\n\nSource: https://www.directindustry.com/prod/goldwind/\n\n\n\n\nFigure 2: Goldwin Wind Turbine - Model: GW 165-6.0 6300"
+    "section": "Forecasted Generated Power",
+    "text": "Forecasted Generated Power"
+  },
+  {
+    "objectID": "Wind-Energy-Yield-Forecast.html#daily-forecasted-energy-forecasted-generated-power",
+    "href": "Wind-Energy-Yield-Forecast.html#daily-forecasted-energy-forecasted-generated-power",
+    "title": "Wind Power & Energy Yield Forecast",
+    "section": "Daily Forecasted Energy Forecasted Generated Power",
+    "text": "Daily Forecasted Energy Forecasted Generated Power\n\n\n\n\n\n\n\nSource: https://www.directindustry.com/prod/goldwind/\n\n\n\n\nFigure 2: Goldwin Wind Turbine - Model: GW 165-6.0 6300"
   }
 ]
