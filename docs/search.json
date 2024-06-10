@@ -14,10 +14,10 @@
     "text": "Coordinates 53.880001068115234°N 7.400000095367432°E\nElevation 0.0 m asl\nTimezone None None\nTimezone difference to GMT+0 0 s\n\n\n\n\n\n\n\n\n\nSource: Google Earth\n\n\n\n\nFigure 1: North Sea, Germany."
   },
   {
-    "objectID": "Wind-Energy-Yield-Forecast.html#weather-variables-forecast",
-    "href": "Wind-Energy-Yield-Forecast.html#weather-variables-forecast",
+    "objectID": "Wind-Energy-Yield-Forecast.html#weather-variables",
+    "href": "Wind-Energy-Yield-Forecast.html#weather-variables",
     "title": "Wind Power & Energy Yield Forecast",
-    "section": "Weather Variables Forecast",
-    "text": "Weather Variables Forecast\n\nrelative_humidity_2m [%]\nsurface_pressure [hPa]\nwind_speed_120m [m]\ntemperature_120m [Celsius]\n\n\n\n\n\n\n\n\nSource: https://www.directindustry.com/prod/goldwind/\n\n\n\n\nFigure 2: Goldwin Wind Turbine - Model: GW 165-6.0 6300"
+    "section": "Weather Variables",
+    "text": "Weather Variables\nrelative_humidity_2m [%]; surface_pressure [hPa]; wind_speed_120m [m/s]; temperature_120m [°C]\n\n\n\n\n\n\n\n\n\n\n\n\nSource: https://www.directindustry.com/prod/goldwind/\n\n\n\n\nFigure 2: Goldwin Wind Turbine - Model: GW 165-6.0 6300"
   }
 ]

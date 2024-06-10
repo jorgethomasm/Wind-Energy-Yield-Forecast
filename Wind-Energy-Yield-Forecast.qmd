@@ -100,10 +100,11 @@ North Sea, Germany.
 #| message: false
 #| echo: false
 
-#hourly_df <- py$hourly_dataframe
-#save(hourly_df, file = "./data/last_update_weather.Rdata")
+hourly_df <- py$hourly_dataframe
 
-load("./data/last_update_weather.Rdata")
+save(hourly_df, file = "./data/last_update_weather.Rdata")
+
+# load("./data/last_update_weather.Rdata")
 
 # ====== Wind Turbine Specs ======
 
@@ -140,17 +141,44 @@ installed_capacity <- (n_wind_turbines * wt_rated_power) / 1000 # [MW]
 
 
  # Lat =  53°52'44.10"N
-
  # Lon =   7°24'28.35"E
 
+
+# ====== Power & Energy Calculations =======
+source("./tools/jthomfuncs.r")
+theme_set(jthomggtheme)
+source("./tools/jthomfuncs_wind.r")
+
+# Add calculations:
+
+hourly_df <-
+	hourly_df |>
+	mutate(rho_h = calc_humid_air_density(temperature_120m, relative_humidity_2m/100, surface_pressure)) |>
+    mutate(p_out = calc_wt_output_power(rated_power = wt_rated_power,
+                                        area = wt_area,
+                                        power_coeff = Cp,
+                                        cut_in = wt_ws_cut_in,
+                                        cut_out = wt_ws_cut_out,
+                                        air_density = rho_h,
+                                        wind_speed = wind_speed_120m)) 
 ```
 
-## Weather Variables Forecast
+## Weather Variables
 
-- relative_humidity_2m [%]
-- surface_pressure [hPa]
-- wind_speed_120m [m]
-- temperature_120m [Celsius]
+relative_humidity_2m \[%\]; surface_pressure \[hPa\]; wind_speed_120m \[m/s\]; temperature_120m \[°C\]
+
+```{r}
+#| label: plots
+#| echo: false
+
+pl_power <- ggplot(hourly_df, aes(x=date, y=p_out)) +
+geom_line() + 
+labs(title="Forcasted Generated Power", y="[kW]", x="UTC",caption = "Forcast Horizon: 7 days")
+
+pl_power
+
+
+```
 
 
 
