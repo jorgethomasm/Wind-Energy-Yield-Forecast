@@ -20,6 +20,7 @@ I can substitute the forecast data with historical on-site records.
 - Quarto
 - Python
 - Open Meteo
+- Numeric Weather Prediction (NWP): DWD ICON
 - R
 - ggplot
 - plotly
