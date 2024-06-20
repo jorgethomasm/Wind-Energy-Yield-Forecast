@@ -2,9 +2,9 @@
 
 ## Description
 
-This project showcases a dashboard with the potential energy yield of a [Goldwing](https://www.goldwind.com/en/) wind turbine on the German North Sea Coast.
+This project showcases a dashboard with the potential energy yield of a [Goldwing](https://www.goldwind.com/en/) turbine on the German coast of the North Sea.
 
-Note that the **assessment is overstemated** given that:
+Note that the **assessment is an overestimate** given that:
 - Maintenance and failure risk is not taken into account.
 - Energy lost due to nacelle rotation is not taken into account. Latest studies have shown losts of around 6% due to turbulence created; this generates bad readings for the control system.
    
