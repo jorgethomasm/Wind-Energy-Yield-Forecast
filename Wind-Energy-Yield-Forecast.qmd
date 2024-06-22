@@ -18,7 +18,7 @@ citation-location: document
 
 ---
 
-Wind power and on-site energy forecast for **one Goldwind wind turbine model GW 165-6.0 6300**
+Wind power and on-site energy forecast for **one Goldwind turbine model GW 165-6.0 6300**
 
 ## Location and Site Assessment
 
@@ -95,12 +95,13 @@ hourly_dataframe = pd.DataFrame(data = hourly_data)
 
 ```
 
-::: {#fig-intro layout-ncol="1"}
-![Source: Google Earth](./images/wt_location.png){width="80%"}
+::: {#fig-intro layout-ncol="2"}
+![Source: Google Earth](./images/wt_location.png){width="73%"}
 
-North Sea, Germany.
+![GW 165-6.0 6300](./images/Goldwind_GW165-60.jpg){width="27%"}
+
+Site and turbine model
 :::
-
 
 ```{r}
 #| label: calculations
@@ -176,9 +177,6 @@ ends <- xts::endpoints(hourly_xts, "days")
 
 ```
 
-### Requested Weather Variables (DWD ICON)
-
-relative_humidity_2m \[%\]; surface_pressure \[hPa\]; wind_speed_120m \[m/s\]; temperature_120m \[°C\]
 
 ## Forecasted Generated Power by the Wind Turbine
 ```{r}
@@ -230,9 +228,9 @@ ggplot(daily_df, aes(x=datetime, y=MWh)) +
 
 ```
 
+#### Requested Weather Variables (DWD ICON)
 
-::: {#fig-intro layout-ncol="1"}
-![Source: https://www.directindustry.com/prod/goldwind/](./images/Goldwind_GW165-60.jpg){width="80%"}
-
-Goldwind Wind Turbine - Model: GW 165-6.0 6300 
-:::
+- relative_humidity_2m \[%\]
+- surface_pressure \[hPa\] 
+- wind_speed_120m \[m/s\] 
+- temperature_120m \[°C\]
