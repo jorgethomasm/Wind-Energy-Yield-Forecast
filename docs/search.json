@@ -25,6 +25,6 @@
     "href": "Wind-Energy-Yield-Forecast.html#daily-forecasted-energy-yield-of-the-wind-turbine",
     "title": "Wind Power & Energy Yield Forecast",
     "section": "Daily Forecasted Energy Yield of the Wind Turbine",
-    "text": "Daily Forecasted Energy Yield of the Wind Turbine\n\n\n\n\n\n\nRequested Weather Variables (DWD ICON)\n\nrelative_humidity_2m [%]\nsurface_pressure [hPa]\nwind_speed_120m [m/s]\ntemperature_120m [°C]"
+    "text": "Daily Forecasted Energy Yield of the Wind Turbine\n\n\n\n\n\n\nRequested Weather Variables (DWD ICON)\n\nrelative_humidity_2m [%]\nsurface_pressure [hPa]\nwind_speed_120m [m/s]\ntemperature_120m [°C]\n\n\n\nTech Stack\n\nQuarto\nPython\nOpen Meteo\nNumeric Weather Prediction (NWP): DWD ICON\nR\nggplot\nplotly"
   }
 ]

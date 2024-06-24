@@ -234,3 +234,13 @@ ggplot(daily_df, aes(x=datetime, y=MWh)) +
 - surface_pressure \[hPa\] 
 - wind_speed_120m \[m/s\] 
 - temperature_120m \[°C\]
+
+#### Tech Stack
+
+- Quarto
+- Python
+- Open Meteo
+- Numeric Weather Prediction (NWP): DWD ICON
+- R
+- ggplot
+- plotly
