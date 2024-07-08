@@ -2,7 +2,7 @@
 
 ## Description
 
-This project showcases a dashboard with the potential energy yield of a [Goldwing](https://www.goldwind.com/en/) turbine on the German coast of the North Sea.
+This project showcases a dashboard with the potential energy yield of a [Goldwind](https://www.goldwind.com/en/) turbine on the German coast of the North Sea.
 
 Note that the **assessment is an overestimate** given that:
 - Maintenance and failure risk is not taken into account.
