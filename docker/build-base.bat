@@ -1,1 +1,1 @@
-docker build -t testing:base .. -f Dockerfile.base
+docker build -t wind-power-forecast:base .. -f Dockerfile.base
