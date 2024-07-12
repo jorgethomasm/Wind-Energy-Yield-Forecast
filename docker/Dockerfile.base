@@ -1,0 +1,57 @@
+# Setting an R environment from scratch 
+# Step 1 - Import base image
+FROM rocker/r-ver:4.3.1 
+
+# Step 2 - Set arguments and environment variables
+# Define arguments
+ARG CRAN_MIRROR=https://cran.rstudio.com/
+ARG QUARTO_VER="1.3.450"
+
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    jq\
+    gcc \
+    build-essential \
+    python3-launchpadlib \
+    python3.10-dev \
+    python3.10-venv \
+    python3-pip \
+    pandoc \
+    pandoc-citeproc \
+    curl \
+    gdebi-core \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen de_DE && locale-gen de_DE.UTF-8 && update-locale
+
+RUN mkdir settings
+WORKDIR /settings
+
+COPY ./requirements.txt .
+COPY ./packages.json .
+COPY ./renv.lock .
+COPY ./install_packages.R .
+COPY ./install_quarto.sh .
+
+RUN Rscript install_packages.R
+
+RUN Rscript -e "renv::restore()"
+
+# Installing Quarto
+RUN curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
+RUN gdebi --non-interactive quarto-linux-amd64.deb
+
+# RUN bash install_quarto.sh $QUARTO_VER
+
+
+# Python's Virtual Environment
+RUN python3 -m venv /venv  \
+    && export PATH=/venv/bin:$PATH \
+    && echo "source /venv/bin/activate" >> ~/.bashrc
+
+# RUN . venv/bin/activate 
+RUN pip install --upgrade pip
+
+RUN pip3 install  --no-cache-dir -r requirements.txt
+
+#CMD ["bash"]

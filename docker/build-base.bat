@@ -1,0 +1,1 @@
+docker build -t testing:base .. -f Dockerfile.base
