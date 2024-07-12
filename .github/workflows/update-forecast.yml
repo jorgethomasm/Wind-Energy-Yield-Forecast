@@ -1,0 +1,15 @@
+name: Hello World!
+
+on: 
+    schedule:
+        - cron: "0 */12 * * *"
+jobs:
+    update-power-forecast:
+        runs-on: ubuntu-22.04
+        container: 
+            image: jorgethomasm/cicd-test:base
+
+        steps:
+            - name: update-power-forecast
+              # run: echo "Hello World"
+              run: quarto preview d:/Repositories/Wind-Energy-Yield-Forecast/Wind-Energy-Yield-Forecast.qmd --no-browser --no-watch-inputs
