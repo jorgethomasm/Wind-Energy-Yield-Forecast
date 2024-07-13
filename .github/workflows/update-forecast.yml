@@ -12,4 +12,4 @@ jobs:
         steps:
             - name: update-power-forecast
               # run: echo "Hello World"
-              run: quarto preview d:/Repositories/Wind-Energy-Yield-Forecast/Wind-Energy-Yield-Forecast.qmd --no-browser --no-watch-inputs
+              run: quarto preview Wind-Energy-Yield-Forecast.qmd --no-browser --no-watch-inputs
