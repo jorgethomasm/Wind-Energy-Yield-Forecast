@@ -16,7 +16,7 @@ install.packages("remotes", repos = "http://cran.rstudio.com/")
 #---- Load list of packages
 
 # Set the jq query
-jq_command <- 'jq -r ".packages[] |  [.package, .version] | @tsv" packages.json'
+jq_command <- 'jq -r ".packages[] |  [.package, .version] | @tsv" ./settings/packages.json'
 
 # Parse the json file with the list of package
 raw <- system(command = jq_command, intern = TRUE)

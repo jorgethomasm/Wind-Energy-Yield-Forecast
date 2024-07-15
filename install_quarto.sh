@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-QUARTO_VERSION=$1
 
-echo "Installing Quarto version $QUARTO_VERSION"
+echo "Installing Quarto version 1.5.54"
 
-# Identify the CPU type (M1 vs Intel)
 if [[ $(uname -m) ==  "aarch64" ]] ; then
   CPU="arm64"
 elif [[ $(uname -m) ==  "arm64" ]] ; then
@@ -12,8 +10,7 @@ else
   CPU="amd64"
 fi
 
-
 TEMP_QUARTO="$(mktemp)" && \
-    wget  -O "$TEMP_QUARTO" https://github.com/quarto-dev/quarto-cli/releases/download/v$QUARTO_VERSION/quarto-${QUARTO_VERSION}-linux-${CPU}.deb && \
+    wget  -O "$TEMP_QUARTO" https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.54/quarto-1.5.54-linux-${CPU}.deb && \
     sudo dpkg -i "$TEMP_QUARTO" && \
     rm -f "$TEMP_QUARTO"
