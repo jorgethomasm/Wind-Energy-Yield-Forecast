@@ -7,19 +7,52 @@ FROM rocker/r-ver:4.3.1
 ARG CRAN_MIRROR=https://cran.rstudio.com/
 ARG QUARTO_VER="1.3.450"
 
+# Define enfrionment variables
+ENV TZ=UTC
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    apt-utils\
+    gfortran \
+    git \
+    g++ \
+    libreadline-dev \
+    libx11-dev \
+    libxt-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libcairo2-dev \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libxml2-dev \
+    libudunits2-dev \
+    libgdal-dev \
+    libbz2-dev \
+    libzstd-dev \
+    liblzma-dev \
+    libpcre2-dev \
+    locales \
+    openjdk-8-jdk \
+    screen \
+    texinfo \
+    texlive \
+    texlive-fonts-extra \
+    vim \
+    wget \
+    xvfb \
+    tzdata \
+    sudo\
     jq\
-    gcc \
-    build-essential \
+    curl\
+    libgit2-dev \
+    libmagick++-dev \
+    make \
+    tmux \
     python3-launchpadlib \
     python3.10-dev \
     python3.10-venv \
     python3-pip \
-    pandoc \
-    pandoc-citeproc \
-    curl \
-    gdebi-core \
+    libharfbuzz-dev \
+    libfribidi-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN locale-gen de_DE && locale-gen de_DE.UTF-8 && update-locale
