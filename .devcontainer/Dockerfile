@@ -86,33 +86,17 @@ RUN locale-gen de_DE && locale-gen de_DE.UTF-8 && update-locale
 
 WORKDIR /root
 
-COPY . /root/
-
 RUN mkdir settings
-# COPY requirements.txt packages.json renv.lock install_packages.R  install_quarto.sh ./settings/
 
-WORKDIR /root
-
-RUN mkdir settings
-WORKDIR /settings
-
-COPY ./requirements.txt .
-COPY ./packages.json .
-COPY ./install_packages.R .
-COPY ./install_quarto.sh .
-COPY ./install_requirements.sh .
-
-# COPY packages.json install_packages.R requirements.txt install_quarto.sh ./settings/
-
-# WORKDIR /root
-RUN Rscript install_packages.R
+COPY packages.json install_packages.R requirements.txt install_quarto.sh ./settings/
+RUN Rscript ./settings/install_packages.R
 
 # Installing Quarto
-RUN bash install_quarto.sh $QUARTO_VER
+RUN bash ./settings/install_quarto.sh $QUARTO_VER
 
 # Step 5 - Set Python Environment and install radian
-# COPY install_requirements.sh ./settings/
-RUN bash install_requirements.sh $VENV_NAME
+COPY install_requirements.sh ./settings/
+RUN bash ./settings/install_requirements.sh $VENV_NAME
 
 COPY .Rprofile /
 RUN echo "alias r='radian --profile=/.Rprofile'" >> ~/.bashrc

@@ -1,12 +1,12 @@
 # ---- Description
-# This file installs the required R packages on the Docker image during the build time. 
+# This file installs the required R packages on the Docker image during the build time.
 # The list of packages and their versions is set on the packages.json file
 # ---- Dependencies
-# To parse the json jq must be installed on the docker image. 
+# To parse the json jq must be installed on the docker image.
 # See: https://stedolan.github.io/jq/
-# ---- Code starts here 
-# Set the working directory
-# setwd("./settings/")
+
+# ---- Code starts here
+setwd("./settings/")
 options(repos=c(CRAN="http://cran.rstudio.com/"))
 # Required the remotes package
 install.packages("remotes", repos = "http://cran.rstudio.com/")
