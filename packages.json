@@ -43,7 +43,7 @@
         {
             "package": "gt",
             "version": "0.10.1"
-        }
+        },
         {
             "package": "lubridate",
             "version": "1.9.3"
@@ -55,6 +55,16 @@
         {
             "package": "xts",
             "version": "0.14.0"
+        }
+    ],
+    "package_dev": [
+        {
+            "package": "BH",
+            "version": "1.81.0-1"
+        },
+        {
+            "package": "httpgd",
+            "version": "1.3.1"
         }
     ]
 }
