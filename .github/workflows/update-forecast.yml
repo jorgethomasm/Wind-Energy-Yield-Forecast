@@ -8,8 +8,13 @@ jobs:
         runs-on: ubuntu-22.04
         container: 
             image: jorgethomasm/cicd-test:base
-
         steps:
+            - name: checkout_repo
+              uses: actions/checkout@v3
+              with:
+                ref: "main"
             - name: update-power-forecast
-              # run: echo "Hello World"
               run: bash ./update_forecast.sh
+              env:
+                USER_EMAIL: ${{ secrets.USER_EMAIL }}
+                USER_NAME: ${{ secrets.USER_NAME }}
