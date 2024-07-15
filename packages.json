@@ -1,8 +1,0 @@
-{
-    "packages": [
-        {
-            "package": "renv",
-            "version": "1.0.3"
-        }
-    ]    
-}

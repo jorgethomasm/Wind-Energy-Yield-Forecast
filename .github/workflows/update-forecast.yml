@@ -14,7 +14,7 @@ jobs:
               with:
                 ref: "main"
             - name: update-power-forecast
-              run: bash ./update_forecast.sh
+              run: bash ./R/update_forecast.sh
               env:
                 USER_EMAIL: ${{ secrets.USER_EMAIL }}
                 USER_NAME: ${{ secrets.USER_NAME }}

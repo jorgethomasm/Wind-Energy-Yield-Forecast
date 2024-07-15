@@ -37,15 +37,15 @@ library(reticulate)
 library(dplyr)
 library(lubridate)
 library(ggplot2)
-library(plotly)
-library(patchwork)
+# library(plotly)
+# library(patchwork)
 library(kableExtra)
 library(xts)
 
-source("./tools/jthomfuncs.r")
+source("./jthomfuncs.r")
 theme_set(jthomggtheme)
 
-source("./tools/jthomfuncs_wind.r")
+source("./jthomfuncs_wind.r")
 
 ```
 
