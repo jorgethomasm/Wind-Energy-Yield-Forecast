@@ -27,7 +27,20 @@ Wind power and on-site energy forecast for **one Goldwind turbine model GW 165-6
 #| message: false
 #| echo: false
 
-source("init.R")
+# ======================== Wind-Energy-Yield-Forecast =========================
+# June 2024
+# @jorgethomasm
+
+# ========================== Load Dependencies ==========================
+
+library(reticulate)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+library(patchwork)
+library(kableExtra)
+library(xts)
 
 source("./tools/jthomfuncs.r")
 theme_set(jthomggtheme)

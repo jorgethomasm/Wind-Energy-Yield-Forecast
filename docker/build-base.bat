@@ -1,1 +1,0 @@
-docker build -t wind-power-forecast:base .. -f Dockerfile.base

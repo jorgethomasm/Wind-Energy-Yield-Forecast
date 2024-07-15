@@ -1,0 +1,1 @@
+docker build -t wind-power-forecast:prod .. -f Dockerfile
