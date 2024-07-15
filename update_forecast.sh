@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# source /opt/renv/bin/activate 
+source /opt/renv/bin/activate 
 
 quarto render ./Wind-Energy-Yield-Forecast.qmd --to html
 
