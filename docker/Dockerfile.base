@@ -73,10 +73,9 @@ RUN Rscript -e "renv::restore()"
 # RUN rm -f renv.lock
 
 # Installing Quarto
-RUN curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
-RUN gdebi --non-interactive quarto-linux-amd64.deb
-# RUN bash install_quarto.sh $QUARTO_VER
-
+RUN curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb && \
+    sudo dpkg -i quarto-linux-amd64.deb && \
+    rm -f quarto-linux-amd64.deb
 
 # Python's Virtual Environment
 RUN python3 -m venv /venv  \

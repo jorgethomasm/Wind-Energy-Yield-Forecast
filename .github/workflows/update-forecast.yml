@@ -7,7 +7,7 @@ jobs:
     refresh-dashboard:
         runs-on: ubuntu-22.04
         container: 
-            image: jorgethomasm/cicd-test:base
+            image: jorgethomasm/cicd-test:prod
         steps:
             - name: checkout_repo
               uses: actions/checkout@v3
