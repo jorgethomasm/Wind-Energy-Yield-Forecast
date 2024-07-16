@@ -59,15 +59,10 @@ invisible(lapply(my_packages, library, character.only = TRUE))
 
 remove("my_packages", "my_installed_packages")
 
-source("./jthomfuncs.r")
+source("./R/jthomfuncs.r")
 theme_set(jthomggtheme)
 
-source("./jthomfuncs_wind.r")
-
-
-
-
-
+source("./R/jthomfuncs_wind.r")
 ```
 
 
@@ -143,7 +138,7 @@ Site and turbine model
 #| echo: false
 
 hourly_df <- py$hourly_dataframe
-save(hourly_df, file = "../data/last_update_weather.Rdata")
+save(hourly_df, file = "./data/last_update_weather.Rdata")
 
 #load("./data/last_update_weather.Rdata")
 
