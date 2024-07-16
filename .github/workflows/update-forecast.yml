@@ -7,7 +7,7 @@ jobs:
     refresh-dashboard:
         runs-on: ubuntu-22.04
         container: 
-            image: jorgethomasm/cicd-test:prod
+            image: jorgethomasm/wind-power-forecast:prod
         steps:
             - name: checkout_repo
               uses: actions/checkout@v3
