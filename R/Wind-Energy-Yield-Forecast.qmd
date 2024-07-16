@@ -218,7 +218,10 @@ ends <- xts::endpoints(hourly_xts, "days")
 #| fig-height: 4
 #| column: page-right
 #| warning: false
-extrafont::loadfonts(quiet = TRUE)
+
+library(extrafont)
+loadfonts(quiet = TRUE)
+
 pl_power <- ggplot(hourly_df, aes(x=date, y=p_out)) +
 
   geom_line(colour = "red") + geom_point(colour = "red") +

@@ -1,18 +1,17 @@
 # JT's functions:
 
 jthomggtheme <- theme_minimal() +
-  theme(
-        plot.title = element_text(size = 14,
+  theme(plot.title = element_text(size = 14,
                                   hjust = 0.5),
         axis.ticks = element_line(),
         # Y-axis:
         axis.title.y = element_text(angle = 0,
-                                    size = 12,
+                                    size = 11,
                                     vjust = 0.5),
         axis.text.y  = element_text(size = 11),
         # X-axis:
         axis.title.x = element_text(angle = 0,
-                                    size = 12,
+                                    size = 11,
                                     vjust = 0.5),
         axis.text.x  = element_text(angle = 0,
                                     size = 11))
