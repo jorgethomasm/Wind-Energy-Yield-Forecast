@@ -33,6 +33,8 @@ Wind power and on-site energy forecast for **one Goldwind turbine model GW 165-6
 
 # ========================== Load Dependencies ==========================
 
+setwd("/workspaces/Wind-Energy-Yield-Forecast/R")
+
 # 1.1. Used Libraries:
 
 my_packages <- c("ggplot2",    # graphical library
@@ -59,10 +61,11 @@ invisible(lapply(my_packages, library, character.only = TRUE))
 
 remove("my_packages", "my_installed_packages")
 
-source("./R/jthomfuncs.r")
+source("jthomfuncs.r")
 theme_set(jthomggtheme)
 
-source("./R/jthomfuncs_wind.r")
+source("jthomfuncs_wind.r")
+extrafont::loadfonts(quiet = TRUE)
 ```
 
 
@@ -138,7 +141,7 @@ Site and turbine model
 #| echo: false
 
 hourly_df <- py$hourly_dataframe
-save(hourly_df, file = "./data/last_update_weather.Rdata")
+save(hourly_df, file = "../data/last_update_weather.Rdata")
 
 #load("./data/last_update_weather.Rdata")
 
@@ -215,7 +218,7 @@ ends <- xts::endpoints(hourly_xts, "days")
 #| fig-height: 4
 #| column: page-right
 #| warning: false
-
+extrafont::loadfonts(quiet = TRUE)
 pl_power <- ggplot(hourly_df, aes(x=date, y=p_out)) +
 
   geom_line(colour = "red") + geom_point(colour = "red") +
