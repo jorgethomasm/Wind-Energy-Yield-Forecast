@@ -1,6 +1,6 @@
 {
     "name": "Wind Power Forecast",
-    "image": "docker pull jorgethomasm/wind-power-forecast:prod",
+    "image": "jorgethomasm/wind-power-forecast:prod",
     "customizations": {
         "settings": {
             "python.defaultInterpreterPath": "/opt/venv/bin/python3",
