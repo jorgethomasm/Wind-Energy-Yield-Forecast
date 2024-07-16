@@ -57,6 +57,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tzdata \
     sudo\
     gsfonts-x11\
+    r-cran-plotly\
     jq\
     curl\
     libgit2-dev \
