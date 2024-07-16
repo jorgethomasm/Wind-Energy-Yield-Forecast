@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source /opt/$VENV_NAME/bin/activate 
+source /opt/venv/bin/activate 
 
 rm -rf ./R/Wind-Energy-Yield-Forecast
 rm ./R/Wind-Energy-Yield-Forecast.html
