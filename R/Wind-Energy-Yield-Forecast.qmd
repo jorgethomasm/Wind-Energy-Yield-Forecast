@@ -37,7 +37,8 @@ setwd("/workspaces/Wind-Energy-Yield-Forecast/R")
 
 # 1.1. Used Libraries:
 
-my_packages <- c("ggplot2",    # graphical library
+my_packages <- c("httpgd",
+                 "ggplot2",    # graphical library
                  "reticulate",    
                  "dplyr",  
                  "tibble", 
@@ -219,8 +220,8 @@ ends <- xts::endpoints(hourly_xts, "days")
 #| column: page-right
 #| warning: false
 
-library(extrafont)
-loadfonts(quiet = TRUE)
+# library(extrafont)
+# loadfonts(quiet = TRUE)
 
 pl_power <- ggplot(hourly_df, aes(x=date, y=p_out)) +
 
