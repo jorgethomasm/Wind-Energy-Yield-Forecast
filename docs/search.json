@@ -11,7 +11,7 @@
     "href": "Wind-Energy-Yield-Forecast.html#location-and-site-assessment",
     "title": "Wind Power & Energy Yield Forecast",
     "section": "Location and Site Assessment",
-    "text": "Location and Site Assessment\n\n\nCoordinates 53.880001068115234°N 7.400000095367432°E\nElevation 0.0 m asl\nTimezone None None\nTimezone difference to GMT+0 0 s\n\n\n\n\n\n\n\n\n\nSource: Google Earth\n\n\n\n\n\n\n\nGW 165-6.0 6300\n\n\n\n\nFigure 1: Site and turbine model"
+    "text": "Location and Site Assessment\n\n\nCoordinates 53.880001068115234°N 7.400000095367432°E\nElevation 0.0 m asl\nTimezone None None\nTimezone difference to GMT+0 0 s\n\n\n\n\n\n\n\n\n\n\nSource: Google Earth\n\n\n\n\n\n\nFigure 1: Location of the wind turbine"
   },
   {
     "objectID": "Wind-Energy-Yield-Forecast.html#forecasted-generated-power-by-the-wind-turbine",
@@ -25,6 +25,6 @@
     "href": "Wind-Energy-Yield-Forecast.html#daily-forecasted-energy-yield-of-the-wind-turbine",
     "title": "Wind Power & Energy Yield Forecast",
     "section": "Daily Forecasted Energy Yield of the Wind Turbine",
-    "text": "Daily Forecasted Energy Yield of the Wind Turbine\n\n\n\n\n\n\nRequested Weather Variables (DWD ICON)\n\nrelative_humidity_2m [%]\nsurface_pressure [hPa]\nwind_speed_120m [m/s]\ntemperature_120m [°C]\n\n\n\nTech Stack\n\nQuarto\nPython\nOpen Meteo\nNumeric Weather Prediction (NWP): DWD ICON\nR\nggplot\nplotly"
+    "text": "Daily Forecasted Energy Yield of the Wind Turbine\n\n\n\n\n\n\n\nRequested Weather Variables (DWD ICON)\n\nrelative_humidity_2m [%]\nsurface_pressure [hPa]\nwind_speed_120m [m/s]\ntemperature_120m [°C]\n\n\n\nTech Stack\n\nCI/CD: Docker & GitHub Actions\nQuarto\nPython\nOpen Meteo\nNumeric Weather Prediction (NWP): DWD ICON\nR\nggplot\nplotly\n\n\n\n\n\n\n\n\n\nGW 165-6.0 6300\n\n\n\n\n\n\nFigure 2: Wind turbine model"
   }
 ]
