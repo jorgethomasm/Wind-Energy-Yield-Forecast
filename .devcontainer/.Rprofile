@@ -1,4 +1,5 @@
 # Source: https://renkun.me/2020/04/14/writing-r-in-vscode-working-with-multiple-r-sessions/
+
 Sys.setenv(TERM_PROGRAM = "vscode")
 source(file.path(Sys.getenv(
   if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"),
@@ -17,9 +18,6 @@ if (interactive() && Sys.getenv("TERM_PROGRAM") == "vscode") {
 }
 
 # Set CRAN Mirror
-# options(repos = Sys.getenv("CRAN_MIRROR"))
-# options(repos = Sys.getenv("https://cran.rstudio.com/"))
-
 local({r <- getOption("repos")
        r["CRAN"] <- Sys.getenv("CRAN_MIRROR")
        options(repos=r)
