@@ -94,12 +94,12 @@ COPY packages.json install_packages.R requirements.txt install_quarto.sh ./setti
 RUN Rscript ./settings/install_packages.R
 
 # Installing Quarto
-RUN sed -i 's/\r//' ./settings/install_quarto.sh
+# RUN sed -i 's/\r//' ./settings/install_quarto.sh
 RUN bash ./settings/install_quarto.sh $QUARTO_VER
 
 # Step 5 - Set Python Environment and install radian
 COPY install_requirements.sh ./settings/
-RUN sed -i 's/\r//' ./settings/install_requirements.sh
+# RUN sed -i 's/\r//' ./settings/install_requirements.sh
 RUN bash ./settings/install_requirements.sh $VENV_NAME
 
 COPY .Rprofile /
