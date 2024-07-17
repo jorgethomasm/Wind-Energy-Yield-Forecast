@@ -3,8 +3,8 @@
     "image": "jorgethomasm/wind-power-forecast:prod",
     "customizations": {
         "settings": {
-            "python.defaultInterpreterPath": "/opt/venv/bin/python3",
-            "python.selectInterpreter": "/opt/venv/bin/python3"
+            "python.defaultInterpreterPath": "/opt/PY_VENV/bin/python3",
+            "python.selectInterpreter": "/opt/PY_VENV/bin/python3"
         },
         "vscode": {
             "extensions": [
@@ -29,8 +29,5 @@
                 "github.vscode-github-actions"
             ]
         }
-    },
-    "remoteEnv": {
-        
     }
 }

@@ -5,13 +5,13 @@ FROM ubuntu:22.04
 # Step 2 - Set arguments and environment variables
 # Define arguments
 ARG PROJECT_NAME="WIND_POWER_FORECAST"
-ARG VENV_NAME="venv"
+ARG VENV_NAME="PY_VENV"
 ARG R_VERSION_MAJOR=4
 ARG R_VERSION_MINOR=3
 ARG R_VERSION_PATCH=1
 ARG DEBIAN_FRONTEND=noninteractive
 ARG CRAN_MIRROR=https://cran.rstudio.com/
-ARG QUARTO_VER="1.3.450"
+ARG QUARTO_VER="1.5.54"
 
 # Define environment variables
 ENV PROJECT_NAME=$PROJECT_NAME
