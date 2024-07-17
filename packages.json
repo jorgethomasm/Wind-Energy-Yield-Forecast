@@ -19,11 +19,7 @@
         {
             "package": "devtools",
             "version": "2.4.5"
-        },
-        {
-            "package": "shiny",
-            "version": "1.7.4"
-        },
+        },        
         {
             "package": "plotly",
             "version": "4.10.2"
@@ -43,11 +39,7 @@
         {
             "package": "devtools",
             "version": "2.4.5"
-        },
-        {
-            "package": "readr",
-            "version": "2.1.4"
-        },
+        },        
         {
             "package": "gt",
             "version": "0.10.1"
