@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 source /opt/venv/bin/activate 
 
+rm -rf .R/docs/
 quarto render ./R/Wind-Energy-Yield-Forecast.qmd --to html
 
-rm -rf docs/
-mkdir docs/
-cp ./R/docs/Wind-Energy-Yield-Forecast.html ./docs/
-cp -R ./R/ ./docs/
+rm -rf ./docs
+cp -R ./R/docs/. ./docs/
 
 echo "Finish"
 p=$(pwd)

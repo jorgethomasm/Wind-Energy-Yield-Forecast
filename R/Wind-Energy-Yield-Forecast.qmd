@@ -129,12 +129,10 @@ hourly_dataframe = pd.DataFrame(data = hourly_data)
 
 ```
 
-::: {#fig-intro layout-ncol="2"}
-![Source: Google Earth](../images/wt_location.png){width="80%"}
+::: {#fig-intro layout-ncol="1"}
+![Source: Google Earth](../images/wt_location.png){width="100%"}
 
-![GW 165-6.0 6300](../images/Goldwind_GW165-60.jpg){width="20%"}
-
-Site and turbine model
+Location of the wind turbine
 :::
 
 ```{r}
@@ -276,6 +274,7 @@ ggplotly(p_eng)
 
 #### Tech Stack
 
+- CI/CD: Docker & GitHub Actions
 - Quarto
 - Python
 - Open Meteo
@@ -283,3 +282,10 @@ ggplotly(p_eng)
 - R
 - ggplot
 - plotly
+
+::: {#fig-intro layout-ncol="1"}
+
+![GW 165-6.0 6300](../images/Goldwind_GW165-60.jpg){width="35%"}
+
+Wind turbine model
+:::
