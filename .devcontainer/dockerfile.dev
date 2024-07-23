@@ -1,0 +1,88 @@
+# Setting an R environment
+# Step 1 - Import base image
+FROM rocker/r-ver:4.3.1
+
+
+# Step 2 - Set arguments and environment variables
+# Arguments
+ARG PROJECT_NAME="WIND_POWER_FORECAST"
+ARG VENV_NAME="python_venv"
+ARG DEBIAN_FRONTEND=noninteractive
+ARG CRAN_MIRROR=https://cran.rstudio.com/
+ARG QUARTO_VER="1.5.54"
+
+# Environment variables
+ENV PROJECT_NAME=$PROJECT_NAME
+ENV VENV_NAME=$VENV_NAME
+ENV QUARTO_VER=$QUARTO_VER
+ENV TZ=UTC
+ENV CRAN_MIRROR=$CRAN_MIRROR
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    r-cran-littler \
+    git \
+    wget \ 
+    dpkg-dev \
+    sudo \
+    g++ \
+    libreadline-dev \
+    libx11-dev \
+    libxt-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libcairo2-dev \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libxml2-dev \
+    libudunits2-dev \
+    libgdal-dev \
+    libbz2-dev \
+    libzstd-dev \
+    liblzma-dev \
+    libpcre2-dev \
+    curl \
+    r-cran-plotly \
+    python3-launchpadlib \
+    python3.10-dev \
+    python3.10-venv \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen de_DE && locale-gen de_DE.UTF-8 && update-locale
+
+
+WORKDIR /root
+RUN mkdir settings
+
+
+# Step 3 - Installing Quarto CLIent
+
+COPY ./settings/install_quarto.sh ./settings/
+# RUN sed -i 's/\r//' ./settings/install_quarto.sh
+RUN bash ./settings/install_quarto.sh
+
+
+# Step 4 - Install remotes pckage 
+COPY ./settings/install_R_packages.R ./settings/
+RUN Rscript ./settings/install_R_packages.R
+# CMD ["Rscript", "./settings/install_R_packages.R"]
+
+
+# Step 5 - Install the rest of R packages in the virtual environment (renv)
+
+# COPY ./renv.lock ./settings/
+# RUN Rscript -e "options(renv.consent = TRUE); \
+# 	renv::restore(lockfile = './settings/renv.lock', repos = \
+#     c(CRAN='https://cloud.r-project.org'))"
+
+# Step 5 - Set Python Environment and install radian
+COPY ./settings/install_requirements.sh ./settings/
+COPY ./settings/requirements.txt ./settings/
+RUN bash ./settings/install_requirements.sh $VENV_NAME
+
+# Step 6 - Set Python Environment (reticulate package already available)
+# COPY ./settings/install_python_venv.R ./settings/
+# RUN Rscript ./settings/install_python_venv.R
+
+COPY ./settings/.Rprofile /
+RUN echo "alias r='radian --profile=/.Rprofile'" >> ~/.bashrc

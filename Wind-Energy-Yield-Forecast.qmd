@@ -1,6 +1,6 @@
 ---
 title: "Wind Power & Energy Yield Forecast"
-subtitle: Forecast Horizon Seven (07) days ahead
+subtitle: Forecast Horizon: Seven days ahead
 author: "Jorge A. Thomas"
 date: "`r Sys.Date()`"
 format:    
@@ -13,17 +13,17 @@ format:
         margin-width: 350px
 execute: 
   echo: fenced
-reference-location: margin # margin
+reference-location: margin
 citation-location: document
 
 ---
 
-Wind power and on-site energy forecast for **one Goldwind turbine model GW 165-6.0 6300**
+Wind power and on-site energy forecast for **a Goldwind turbine model GW 165-6.0 6300**.
 
 ## Location and Site Assessment
 
 ```{r}
-#| label: initialisation
+#| label: init
 #| message: false
 #| echo: false
 
@@ -33,106 +33,34 @@ Wind power and on-site energy forecast for **one Goldwind turbine model GW 165-6
 
 # ========================== Load Dependencies ==========================
 
-setwd("/workspaces/Wind-Energy-Yield-Forecast/R")
+library("reticulate")
 
-# 1.1. Used Libraries:
+# Use a specific virtualenv
+# reticulate::use_virtualenv(Sys.getenv("VIRTUAL_ENV"), required = TRUE)
+reticulate::use_virtualenv(paste0("/opt/", Sys.getenv("VENV_NAME")), required = TRUE)
 
-my_packages <- c("httpgd",
-                 "ggplot2",    # graphical library
-                 "reticulate",    
-                 "dplyr",  
-                 "tibble", 
-                 "lubridate", 
-                 "kableExtra", 
-                 "xts", 
-                 "plotly"
-                 ) 
+# Sys.getenv("VIRTUAL_ENV")
+# Sys.setenv(LD_LIBRARY_PATH = paste0(Sys.getenv("HOME"),"/opt/python-3.6.2/lib"))
+# Sys.getenv("LD_LIBRARY_PATH"
+# py_config()
 
-# "pals"     # more colour palettes
-# "ggthemes" # more colour palettes
+library("dplyr")
+library("ggplot2")
+library("tibble")
+library("lubridate")
+library("kableExtra")
+library("xts")
+library("plotly")
 
-# 1.2. Install packages ---------------------
+theme_set(theme_minimal())
 
-my_installed_packages <- my_packages %in% rownames(installed.packages())
-
-if (any(my_installed_packages == FALSE)) install.packages(my_packages[!my_installed_packages])
-
-# 1.3. Load Packages  ----------------------
-
-invisible(lapply(my_packages, library, character.only = TRUE))
-
-remove("my_packages", "my_installed_packages")
-
-source("jthomfuncs.r")
-theme_set(jthomggtheme)
-
-source("jthomfuncs_wind.r")
-extrafont::loadfonts(quiet = TRUE)
-```
-
-
-```{python}
-#| label: request
-#| message: false
-#| echo: false
-
-# Initialise libraries
-
-import openmeteo_requests
-import requests_cache
-import pandas as pd
-from retry_requests import retry
-
-# Setup the Open-Meteo API client with cache and retry on error
-cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
-retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
-openmeteo = openmeteo_requests.Client(session = retry_session)
-
-# Make sure all required weather variables are listed here
-# The order of variables in hourly or daily is important to assign them correctly below
-url = "https://api.open-meteo.com/v1/dwd-icon"
-params = {
-	"latitude": 53.88,
-	"longitude": 7.40,
-	"hourly": ["relative_humidity_2m", "surface_pressure", "wind_speed_120m", "temperature_120m"],
-	"wind_speed_unit": "ms",
-	"timeformat": "unixtime"
-}
-responses = openmeteo.weather_api(url, params=params)
-
-# Process first location. Add a for-loop for multiple locations or weather models
-response = responses[0]
-print(f"Coordinates {response.Latitude()}°N {response.Longitude()}°E")
-print(f"Elevation {response.Elevation()} m asl")
-print(f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}")
-print(f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
-
-# Process hourly data. The order of variables needs to be the same as requested.
-hourly = response.Hourly()
-hourly_relative_humidity_2m = hourly.Variables(0).ValuesAsNumpy()
-hourly_surface_pressure = hourly.Variables(1).ValuesAsNumpy()
-hourly_wind_speed_120m = hourly.Variables(2).ValuesAsNumpy()
-hourly_temperature_120m = hourly.Variables(3).ValuesAsNumpy()
-
-hourly_data = {"date": pd.date_range(
-	start = pd.to_datetime(hourly.Time(), unit = "s", utc = True),
-	end = pd.to_datetime(hourly.TimeEnd(), unit = "s", utc = True),
-	freq = pd.Timedelta(seconds = hourly.Interval()),
-	inclusive = "left"
-)}
-hourly_data["relative_humidity_2m"] = hourly_relative_humidity_2m
-hourly_data["surface_pressure"] = hourly_surface_pressure
-hourly_data["wind_speed_120m"] = hourly_wind_speed_120m
-hourly_data["temperature_120m"] = hourly_temperature_120m
-
-hourly_dataframe = pd.DataFrame(data = hourly_data)
-
+source("./utils/jthomfuncs_wind.r")
 ```
 
 ::: {#fig-intro layout-ncol="1"}
-![Source: Google Earth](../images/wt_location.png){width="100%"}
+![Source: Google Earth](./imgs/wt_location.png){width="100%"}
 
-Location of the wind turbine
+Location of the wind turbine.
 :::
 
 ```{r}
@@ -140,10 +68,12 @@ Location of the wind turbine
 #| message: false
 #| echo: false
 
-hourly_df <- py$hourly_dataframe
-save(hourly_df, file = "../data/last_update_weather.Rdata")
+reticulate::source_python("./utils/request_weather.py")
 
-#load("./data/last_update_weather.Rdata")
+hourly_df <- py$hourly_dataframe
+
+# Last update weather data logSys
+write.table(hourly_df, "./data/last_req_weather.csv", sep = ",", quote = FALSE)
 
 # ====== Wind Turbine Specs ======
 
@@ -215,7 +145,7 @@ ends <- xts::endpoints(hourly_xts, "days")
 #| label: plots
 #| echo: false
 #| fig-width: 11
-#| fig-height: 4
+#| fig-height: 5
 #| column: page-right
 #| warning: false
 
@@ -239,7 +169,7 @@ ggplotly(pl_power)
 #| echo: false
 #| message: false
 #| fig-width: 11
-#| fig-height: 4
+#| fig-height: 5
 #| column: page-right
 #| warning: false
 
@@ -251,14 +181,12 @@ daily_df <-
     mutate(datetime = as.Date(time(daily_xts), tz = "UTC")) |>
     mutate(MWh = V1/1000) |>
     relocate(datetime) 
-    
-    # |>
-    # slice(2:(n()-1)) 
-
+   
 p_eng <- ggplot(daily_df, aes(x=datetime, y=MWh)) +
   geom_col(alpha = 0.6, fill="blue") + 
   labs(y = "[MWh]", x="Days Ahead", caption = "Forecast Horizon: 7 days ahead.") +
   geom_text(aes(label = round(MWh, 2)), vjust = -0.2) +
+  scale_y_continuous(limits=c(0, 200)) +
   scale_x_date(date_breaks = "1 day", date_minor_breaks = "1 day", expand = c(0, 0), date_labels = "%d.%m.%Y")
 
 ggplotly(p_eng)
@@ -285,7 +213,7 @@ ggplotly(p_eng)
 
 ::: {#fig-intro layout-ncol="1"}
 
-![GW 165-6.0 6300](../images/Goldwind_GW165-60.jpg){width="35%"}
+![GW 165-6.0 6300](./imgs/Goldwind_GW165-60.jpg){width="35%"}
 
-Wind turbine model
+Wind turbine model.
 :::

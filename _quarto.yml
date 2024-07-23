@@ -1,0 +1,12 @@
+project:
+  title: "Wind-Power-Forecast"
+  type: website  
+  output-dir: docs  
+
+website:
+  title: "Wind Power and Energy Forcast"
+  page-footer:     
+    left: | 
+      © 2024 J. Thomas
+    background: "#78C2AD" 
+

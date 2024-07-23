@@ -1,3 +1,3 @@
 docker login
-docker tag wind-power-forecast:prod jorgethomasm/wind-power-forecast:prod
-docker push jorgethomasm/wind-power-forecast:prod
+docker tag wind-power-forecast:dev jorgethomasm/wind-power-forecast:dev
+docker push jorgethomasm/wind-power-forecast:dev

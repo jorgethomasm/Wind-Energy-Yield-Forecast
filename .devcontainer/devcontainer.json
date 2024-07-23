@@ -1,11 +1,11 @@
 {
     "name": "Wind Power Forecast",
-    "image": "jorgethomasm/wind-power-forecast:prod",
+    "image": "jorgethomasm/wind-power-forecast:dev",
     "customizations": {
-        "settings": {
-            "python.defaultInterpreterPath": "/opt/PY_VENV/bin/python3",
-            "python.selectInterpreter": "/opt/PY_VENV/bin/python3"
-        },
+        //"settings": {
+        //    "python.defaultInterpreterPath": "/opt/PY_VENV/bin/python3",
+        //    "python.selectInterpreter": "/opt/PY_VENV/bin/python3"
+        //},
         "vscode": {
             "extensions": [
                 // R Extensions
