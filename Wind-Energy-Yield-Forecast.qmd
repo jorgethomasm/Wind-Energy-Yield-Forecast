@@ -1,6 +1,6 @@
 ---
 title: "Wind Power & Energy Yield Forecast"
-subtitle: Forecast Horizon: Seven days ahead
+subtitle: Forecast Horizon -> Seven days ahead
 author: "Jorge A. Thomas"
 date: "`r Sys.Date()`"
 format:    
