@@ -2,7 +2,7 @@ name: Update Power Forecast
 
 on: 
   schedule:
-    - cron: "0 */24 * * *"
+    - cron: "0 4 * * *"
 jobs:
   refresh-dashboard:
     runs-on: ubuntu-22.04
